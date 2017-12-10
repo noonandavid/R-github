@@ -4,7 +4,7 @@ library("gh", lib.loc="/Library/Frameworks/R.framework/Versions/3.3/Resources/li
 
 # initalise varibles
 h = 7
-org = gh("/users/john-smith",.token = "code",.limit = Inf)
+org = gh("/users/john-smith",.token = "45d431d49acecb8065a84627478036b1aaa45a2e",.limit = Inf)
 classify <- 0
 push_rec <- 0
 pull_rec <- 0
@@ -14,9 +14,18 @@ create_rec <- 0
 fork_rec <- 0
 prov_followers_list <- list()
 prov_following_list <- list()
+prov_repos_list <- list()
+list_of_repos <- rep(list(list()),100)
 list_of_followers <- rep(list(list()),100)
 list_of_following <- rep(list(list()),100)
-list_of_repos <- list()
+
+cov_ers <- matrix(, nrow = 100, ncol = 100)
+cov_ing <- matrix(,nrow = 100, ncol = 100)
+cov_repos <- matrix(,nrow = 100, ncol = 100)
+cov_repos_ajust <- matrix(,nrow = 100, ncol = 100)
+cov_ing_ajust <- matrix(,nrow = 100, ncol = 100)
+cov_ers_ajust <- matrix(,nrow = 100, ncol = 100)
+
 
 repos_list = org$repos_url
 ers_list = org$followers_url
@@ -25,16 +34,16 @@ ing_list =unlist(strsplit(ing_list, split='{', fixed=TRUE))[1]
 events_list = org$events_url
 events_list =unlist(strsplit(events_list, split='{', fixed=TRUE))[1]
 
-lk = gh(repos_list[1],.token = "code",.limit = Inf)
+lk = gh(repos_list[1],.token = "45d431d49acecb8065a84627478036b1aaa45a2e",.limit = Inf)
 rep_nos = list(length(lk))
-lk = gh(ers_list[1],.token = "code",.limit = Inf)
+lk = gh(ers_list[1],.token = "45d431d49acecb8065a84627478036b1aaa45a2e",.limit = Inf)
 fol_nos = list(length(lk))
-lk = gh(ing_list[1],.token = "code",.limit = Inf)
+lk = gh(ing_list[1],.token = "45d431d49acecb8065a84627478036b1aaa45a2e",.limit = Inf)
 foling_nos = list(length(lk))
-lk = gh(events_list[1],.token = "code",.limit = Inf)
+lk = gh(events_list[1],.token = "45d431d49acecb8065a84627478036b1aaa45a2e",.limit = Inf)
 event_nos = list(length(lk))
 
-list <- gh("https://api.github.com/users/john-smith/followers",.token = "code",.limit = Inf)
+list <- gh("https://api.github.com/users/john-smith/followers",.token = "45d431d49acecb8065a84627478036b1aaa45a2e",.limit = Inf)
 
 for (f in 2:length(list) ){
   ers_list[f] <- list[[f]]$followers_url
@@ -42,7 +51,7 @@ for (f in 2:length(list) ){
 
 
 for (o in h:length(ers_list)){
-    x <- gh(ers_list[[o]],.token = "code",.limit = Inf)
+    x <- gh(ers_list[[o]],.token = "45d431d49acecb8065a84627478036b1aaa45a2e",.limit = Inf)
     for(f in 1:length(x)){
       list[[length(list)+1]] <- x[[f]]
     }
@@ -56,14 +65,14 @@ selection[[45]] = list [[403]]
 
 for (p in 1:length(selection)){
   index <- selection[[p]]$repos_url
-  reps <- gh(index,.token = "code",.limit = Inf)
+  reps <- gh(index,.token = "45d431d49acecb8065a84627478036b1aaa45a2e",.limit = Inf)
   rep_nos[p] <- length(reps)
 }
 
 for (y in 1:length(selection)){
   index <- selection[[y]]$events_url
   index = unlist(strsplit(index, split='{', fixed=TRUE))[1]
-  events <- gh(index,.token = "code",.limit = Inf)
+  events <- gh(index,.token = "45d431d49acecb8065a84627478036b1aaa45a2e",.limit = Inf)
   event_nos[y] = length(events)
   push = 0 
   pull = 0
@@ -97,26 +106,70 @@ fork_rec[y] = fork
 
 for (a in 1:length(selection)){
   index <- selection[[a]]$followers_url
-  followers <- gh(index,.token = "code",.limit = Inf)
+  followers <- gh(index,.token = "45d431d49acecb8065a84627478036b1aaa45a2e",.limit = Inf)
   fol_nos[a] = length(followers)
   if (followers != ""){
   for (th in 1:length(followers)){
-    prov_followers_list[th] <- followers[[th]]$login 
+    prov_followers_list[count] <- followers[[th]]$login 
   }
   list_of_followers[[a]] <-prov_followers_list
   }}
 
-for (b in 39:length(selection)){
+for (b in 1:length(selection)){
   index <- selection[[b]]$following_url
   index = unlist(strsplit(index, split='{', fixed=TRUE))[1]
-  following <- gh(index,.token = "code",.limit = Inf)
+  following <- gh(index,.token = "45d431d49acecb8065a84627478036b1aaa45a2e",.limit = Inf)
   foling_nos[b] = length(following)
   if (following != ""){
+    count = 1
     for (th in 1:length(following)){
-      prov_following_list[th] <- following[[th]]$login 
+      prov_following_list = list()
+      prov_following_list[count] = following[[th]]$login 
     }
     list_of_following[[b]] <-prov_following_list
   }
 }
 
+for (b in 1:length(selection)){
+  index <- selection[[b]]$repos_url
+  index = unlist(strsplit(index, split='{', fixed=TRUE))[1]
+  repos <- gh(index,.token = "45d431d49acecb8065a84627478036b1aaa45a2e",.limit = Inf)
+  rep_nos[b] = length(repos)
+  if (repos != ""){
+    for (th in 1:length(repos)){
+      prov_repos_list[th] <- repos[[th]]$name 
+    }
+    list_of_repos[[b]] <-prov_repos_list
+  }
+}
 
+
+for (i in 1:100){
+  for(j in 1:100){
+    if (i != j){
+      cov_ers[i,j] <- length(intersect(list_of_followers[[i]],list_of_followers[[j]]))
+      cov_ers_ajust[i,j] <- as.numeric(cov_ers[i,j])/as.numeric(fol_nos[i])
+    }
+  }
+}
+for (i in 1:100){
+  for(j in 1:100){
+    if (i != j){
+      cov_ing[i,j] <- length(intersect(list_of_following[[i]],list_of_following[[j]]))
+      cov_ing_ajust[i,j] <- as.numeric(cov_ing[i,j])/as.numeric(foling_nos[i])
+    }
+  }
+}
+for (i in 1:100){
+  for(j in 1:100){
+    if (i != j){
+      cov_repos[i,j] <- length(intersect(list_of_repos[[i]],list_of_repos[[j]]))
+      cov_repos_ajust[i,j] <- as.numeric(cov_repos[i,j])/as.numeric(rep_nos[i])
+    }
+  }
+}
+
+
+list_of_following[[2]]
+
+prov_following_list
