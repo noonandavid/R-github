@@ -25,19 +25,15 @@ boxplot(unlist(fol_nos))
 
  melted_cormat <- melt(cov_ing)
  head(melted_cormat)
- ggplot(data = melted_cormat, aes(x=Var1, y=Var2, fill=value)) + 
+ ggplot(data = melted_cormat, aes(fill=value)) + 
    geom_tile()
 
  
  melted_cormats <- melt(cov_ers)
  head(melted_cormats)
- ggplot(data = melted_cormats, aes(x=Var1, y=Var2, fill=value)) + 
+ ggplot(data = melted_cormats, aes(x=Var1, y=Var2, fill=value,)) + 
    geom_tile()
  
- melted_cormat <- melt(cov_ing)
- head(melted_cormat)
- ggplot(data = melted_cormat, aes(x=Var1, y=Var2, fill=value)) + 
-   geom_tile()
  
  melted_repos <- melt(cov_repos)
  head(melted_repos)
@@ -54,7 +50,7 @@ boxplot(unlist(fol_nos))
  ggplot(data = melted_ing_ajust, aes(x=Var1, y=Var2, fill=value)) + 
    geom_tile()
  
- 
- 
- write.csv(melted_cormats, file="mymatrix.csv")
+qplot(recip)
+qplot(issues_rec)
+?aes
  
