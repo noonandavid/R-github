@@ -1,27 +1,6 @@
 library(ggplot2)
 library(reshape2)
 
-plot (delete_rec,create_rec)
-
-plot(unlist(fol_nos),create_rec)
-
-plot(unlist(foling_nos),unlist(fol_nos)
-
-??outliers
-
-plot(push_rec,fork_rec)
-plot(push_rec,pull_rec)
-?plot()
-??boxplot
-boxplot(push_rec)
-boxplot(pull_rec)
-boxplot(issues_rec)
-boxplot(issues_rec)
-boxplot(unlist(foling_nos))
-boxplot(unlist(fol_nos))
-
-
- ggplot(cov_ing)
 
  melted_cormat <- melt(cov_ing)
  head(melted_cormat)
@@ -52,5 +31,6 @@ boxplot(unlist(fol_nos))
  
 qplot(recip)
 qplot(issues_rec)
-?aes
- 
+qplot(pull_rec)
+qplot(push_rec)
+qplot(issues_rec)
