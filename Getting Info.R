@@ -4,7 +4,7 @@ library("gh", lib.loc="/Library/Frameworks/R.framework/Versions/3.3/Resources/li
 
 # initalise varibles
 h = 7
-org = gh("/users/noonandavid",.token = "e77e44038f114dd9f2cd2d5ea52c6abf250d23e5",.limit = Inf)
+org = gh("/users/ScottKillen/events",.token = "e77e44038f114dd9f2cd2d5ea52c6abf250d23e5",.limit = Inf)
 classify <- 0
 push_rec <- 0
 pull_rec <- 0
@@ -42,24 +42,18 @@ event_nos <- vector()
 
 
 
-list <- gh("https://api.github.com/users/noonandavid/following",.token = "e77e44038f114dd9f2cd2d5ea52c6abf250d23e5",.limit = Inf)
+list <- gh("https://api.github.com/users/ScottKillen/following",.token = "e77e44038f114dd9f2cd2d5ea52c6abf250d23e5",.limit = Inf)
 for (j in 1:5){
 for (i in 1:length(list)){
-    x <- gh(list[[i]]$followers_url,.token = "e77e44038f114dd9f2cd2d5ea52c6abf250d23e5",.limit = Inf)
+    x <- gh(as.character(list[[i]][7]),.token = "e77e44038f114dd9f2cd2d5ea52c6abf250d23e5",.limit = Inf)
     for(f in 1:length(x)){
       list[[length(list)+1]] <- x[[f]]
     }
-    h <- h + 1
+   
     list <- unique(list)
 }}
-selection = list[1:100]
-
-
-for (i in 1:length(selection)){
-  index <- selection[[i]]$repos_url
-  reps <- gh(index,.token = "e77e44038f114dd9f2cd2d5ea52c6abf250d23e5",.limit = Inf)
-  rep_nos[i] <- length(reps)
-}
+selection = list[100:200]
+selection[[66]]
 
 for (i in 1:length(selection)){
   index <- as.character(selection[[i]][14])
@@ -79,32 +73,34 @@ for (i in 1:length(selection)){
   project_event = 0
   
 for (i in 1:length(events)){
-  classify = events[[i]]
-  if (classify != ""){
-    if  (classify$type == "PushEvent")
+ 
+  classify =events[[i]][2]
+ {
+   if (!is.na(classify)){
+    if  (classify == "PushEvent")
     {push = push + 1}
-    if  (classify$type == "PullRequestEvent")
+    if  (classify == "PullRequestEvent")
     {pull = pull + 1}
-    if  (classify$type == "PullRequestReviewEvent")
+    if  (classify == "PullRequestReviewEvent")
     {pull_review = pull_review + 1}
-    if  (classify$type == "PullRequestReviewCommentEvent")
+    if  (classify == "PullRequestReviewCommentEvent")
     {pull_review_comment = pull_review_comment + 1}
-    if  (classify$type == "IssuesEvent")
+    if  (classify == "IssuesEvent")
     {issues = issues + 1}
-    if  (classify$type == "IssuesCommentEvent")
+    if  (classify == "IssuesCommentEvent")
     {issues_comment = issues_comment + 1}
-    if  (classify$type == "CreateEvent")
+    if  (classify == "CreateEvent")
     {create = create + 1}
-    if  (classify$type == "DeleteEvent")
+    if  (classify == "DeleteEvent")
     {delete = delete + 1}
-    if  (classify$type == "ForkEvent")
+    if  (classify == "ForkEvent")
     {fork = fork + 1}
-    if  (classify$type == "OrganizationEvent")
+    if  (classify == "OrganizationEvent")
     {org_event = org_event + 1}
-    if  (classify$type == "ProjectEvent")
+    if  (classify == "ProjectEvent")
     {project_event = project_event + 1}
-    
   }}
+  }
 pull_rec[i] = pull
 push_rec[i] = push
 pull_review_rec[i] = pull_review
@@ -122,11 +118,11 @@ for (i in 1:length(selection)){
   index <- as.character(selection[[i]][7])
   followers <- gh(index,.token = "e77e44038f114dd9f2cd2d5ea52c6abf250d23e5",.limit = Inf)
   fol_nos[i] = length(followers)
-  if (followers != ""){
+  if (length(followers) != 0){
     count = 1
     prov_followers_list = list()
   for (th in 1:length(followers)){
-    prov_followers_list[count] <- followers[[th]]$login 
+    prov_followers_list[count] <- as.character(followers[[th]][1])
     count <- count + 1;
   }
   }
@@ -138,19 +134,20 @@ for (i in 1:length(selection)){
   index = unlist(strsplit(index, split='{', fixed=TRUE))[1]
   following <- gh(index,.token = "e77e44038f114dd9f2cd2d5ea52c6abf250d23e5",.limit = Inf)
   foling_nos[i] = length(following)
-  if (following != ""){
+  if (length(following) != 0){
     count = 1
     prov_following_list = list()
     for (th in 1:length(following)){
-      prov_following_list[count] = following[[th]]$login 
+      prov_following_list[count] = as.character(following[[th]][1]) 
       count <- count + 1;
     }
-  }
-  list_of_following[[i]] <-prov_following_list
+    list_of_following[[i]] <-prov_following_list
+  }else (list_of_following[[i]] = 0)
+  
 }
 
 for (i in 1:length(selection)){
-  index <- selection[[i]][13]
+  index <- as.character(selection[[i]][13])
   index = unlist(strsplit(index, split='{', fixed=TRUE))[1]
   repos <- gh(index,.token = "e77e44038f114dd9f2cd2d5ea52c6abf250d23e5",.limit = Inf)
   rep_nos[i] = length(repos)
@@ -174,6 +171,11 @@ for (i in 1:100){
     }
   }
 }
+
+
+list_of_names <- rownames(cov_ers_ajust)
+list_of_names <- colnames(cov_ers_ajust)
+
 for (i in 1:100){
   for(j in 1:100){
     if (i != j){
@@ -212,5 +214,8 @@ for (i in 1:100){
   }
 }
 
-write.csv(connections, file = "data.csv")
-?write.csv
+
+list_of_followers
+fol_nos
+list_of_names
+ 
