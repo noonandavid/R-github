@@ -1,5 +1,9 @@
 I wrote my program to be used to analyse a teams preformance. For my selection i just picked a person from github and started the process with him 
 but i intended it to be used for a workplace or project.
+To run the code you will need to install a few packages in r 
+For the getting info file you will need the gh package
+For the visualise you will need the ggplot2, reshape2 and plotly packages 
+All of these are avalable on CRAN
 
 For the matrix graphs I retrieved a list of all of the followers each person has.
 I now have two lists of followers for each person.
