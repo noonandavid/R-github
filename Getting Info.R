@@ -4,7 +4,7 @@ library("gh", lib.loc="/Library/Frameworks/R.framework/Versions/3.3/Resources/li
 
 # initalise varibles
 h = 7
-org = gh("/users/ScottKillen/events",.token = "e77e44038f114dd9f2cd2d5ea52c6abf250d23e5",.limit = Inf)
+
 classify <- 0
 push_rec <- 0
 pull_rec <- 0
