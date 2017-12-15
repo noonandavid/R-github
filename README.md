@@ -4,7 +4,7 @@ David Noonan       15320927
 Github Api Project
 
 I wrote my program to be used to analyse a teams preformance. For my selection i just picked a person from github and started the process with him 
-but i intended it to be used for a workplace or project.
+but i intended it to be used for a workplace or project. I limited my selection to 100 people but if it was in a closed loop this would not be nessassary.
 To run the code you will need to install a few packages in r 
 For the getting info file you will need the gh package
 For the visualise you will need the ggplot2, reshape2 and plotly packages 
