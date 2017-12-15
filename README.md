@@ -1,3 +1,8 @@
+David Noonan       15320927
+
+
+Github Api Project
+
 I wrote my program to be used to analyse a teams preformance. For my selection i just picked a person from github and started the process with him 
 but i intended it to be used for a workplace or project.
 To run the code you will need to install a few packages in r 
@@ -16,8 +21,7 @@ I then used ggplots2 to graph the matrix in colour.
 Lastly I graphed it using plotly so it would be interactive.
 This means you can hover your mouse over a point and see the names of the two people which are being compared.
 
-Here are non interactive versions
-
+Here are non interactive versions 
 ![shared folllowing](https://user-images.githubusercontent.com/32358791/34043922-d95571fe-e19a-11e7-8f11-b23b609c3eac.png)
 ![shared followers](https://user-images.githubusercontent.com/32358791/34043924-d9709006-e19a-11e7-9d52-3df7a8b8b384.png)
 ![shared repositorys](https://user-images.githubusercontent.com/32358791/34043925-d988e7be-e19a-11e7-9fff-01c2053086d2.png)
