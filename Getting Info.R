@@ -43,7 +43,7 @@ event_nos <- vector()
 
 
 list <- gh("https://api.github.com/users/ScottKillen/following",.token = "e77e44038f114dd9f2cd2d5ea52c6abf250d23e5",.limit = Inf)
-for (j in 1:5){
+
 for (i in 1:length(list)){
     x <- gh(as.character(list[[i]][7]),.token = "e77e44038f114dd9f2cd2d5ea52c6abf250d23e5",.limit = Inf)
     for(f in 1:length(x)){
@@ -51,9 +51,9 @@ for (i in 1:length(list)){
     }
    
     list <- unique(list)
-}}
+}
 selection = list[100:200]
-selection[[66]]
+
 
 for (i in 1:length(selection)){
   index <- as.character(selection[[i]][14])
@@ -215,7 +215,5 @@ for (i in 1:100){
 }
 
 
-list_of_followers
-fol_nos
-list_of_names
+
  
