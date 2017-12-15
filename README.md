@@ -23,5 +23,5 @@ The next graph I produced is a bar chart of each of the events and the number of
 I also compared a few different events against each other to see if there is a correlation for example push and number of followers.
 
 
-
+![alt text](graphs/Issues Graph.png "Description goes here")
 
