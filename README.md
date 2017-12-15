@@ -25,9 +25,13 @@ Here are non interactive versions
 Here are the links for the interactive grids:
 
 https://macneill.scss.tcd.ie/~noonanda/following_grid_ajust.html
+
 https://macneill.scss.tcd.ie/~noonanda/followers_grid_ajust.html
+
 https://macneill.scss.tcd.ie/~noonanda/repos_grid.html
+
 https://macneill.scss.tcd.ie/~noonanda/repos_grid_ajust.html
+
 
 
 I did this for shared followers, following and repos. For repos I also included a version that wasn't ajusted as i felt having the number of repos 
