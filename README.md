@@ -23,5 +23,10 @@ The next graph I produced is a bar chart of each of the events and the number of
 I also compared a few different events against each other to see if there is a correlation for example push and number of followers.
 
 
-![alt text](graphs/Issues Graph.png "Description goes here")
+![issues graph](https://user-images.githubusercontent.com/32358791/34042996-0519681c-e197-11e7-8723-184a85da9e37.png)
+![pullgraph](https://user-images.githubusercontent.com/32358791/34043009-12f27afa-e197-11e7-8398-490d98c03086.png)
+![pullvsno offollowers](https://user-images.githubusercontent.com/32358791/34043011-176d0aaa-e197-11e7-9199-7f6862b0e8a0.png)
+![pushvsissues](https://user-images.githubusercontent.com/32358791/34043014-18e3a448-e197-11e7-8f82-d09ea7c79ad4.png)
+
+
 
